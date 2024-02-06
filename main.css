@@ -1,3 +1,57 @@
-body {
-  background-color: aqua;
+.container {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.7em;
+  margin: 40px auto;
+}
+
+
+#sidebar {
+  background-color: red;
+  grid-row: span 4;
+}
+
+.main {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav, #projects, #form {
+  background-color: blueviolet;
+  width: 100%;
+  margin: 0.7em auto;
+}
+
+.footer {
+  background-color: green;
+  width: 80%;
+  height: 50px;
+  margin: 0.7em auto;
+}
+
+#projects {
+  height: 300px;
+}
+
+#form {
+  height: 300px;
+}
+
+.nav {
+  height: 50px;
+  margin-top: 0;
+}
+
+@media screen and (max-width:720px) {
+  .container {
+    display: flex;
+    flex-flow: column;
+  }
+
+  #sidebar {
+    height: 300px;
+    margin-bottom: 0.7em;
+  }
 }
