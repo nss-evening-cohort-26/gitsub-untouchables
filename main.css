@@ -18,10 +18,10 @@
   flex-direction: column;
 }
 
-.nav, #packages, #packages-form {
+.nav, #packages, #projects, #form, #packages-form {
   display: flex;
   flex-wrap: wrap;
-  /* background-color: blueviolet; */
+  background-color: blueviolet;
   width: 100%;
   margin: 0.7em auto;
 }
@@ -48,19 +48,34 @@
   width: 80%;
   height: 50px;
   margin: 0.7em auto;
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    
+    li {
+      margin: 0px 10px;
+    }
+  }
 }
 
-#packages {
-  height: 300px;
-}
-
-#form {
+#projects, #packages, #form {
   height: 300px;
 }
 
 .nav {
   height: 50px;
   margin-top: 0;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  height: 50px;
+  margin-top: 0;
+
+  a {
+    color: black;
+  }
 }
 
 @media screen and (max-width:720px) {
