@@ -22,51 +22,6 @@ const renderToDom = (divId, htmlToRender) => {
   selectedId.innerHTML = htmlToRender;
 };
 
-//HTML Components for the navbar, profile area and footerOnDom
-//Navbar to DOM
-const navOnDom = () => {
-  const domString = `
-  <ul class="nav nav-underline">
-    <li class="nav-item">
-      <a class="nav-link " aria-current="page" href="#">Overview</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Repositories</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Projects</a></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="packages.html">Packages</a>
-    </li>
-  </ul>
-  `;
-
-  renderToDom(".nav", domString);
-};
-
-//Footer to DOM
-const footerOnDom = () => {
-  const domString = `
-  <ul>
-    <li><a href="#">© 2024 GitHub, Inc.</a></li>
-    <li><a href="#">Terms</a></li>
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Security</a></li>
-    <li><a href="#">Status</a></li>
-    <li><a href="#">Help</a></li>
-    <li><a href="#"></a></li>
-    <li><a href="#">Contact Github</a></li>
-    <li><a href="#">Pricing</a></li>
-    <li><a href="#">API</a></li>
-    <li><a href="#">Training</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">About</a></li>
-  </ul>
-  `;
-
-  renderToDom(".footer", domString);
-};
 
 //Profile to DOM
 const profileOnDom = (array) => {
@@ -156,13 +111,20 @@ const packageForm = () => {
   });
 };
 
+const eventListeners = () => {
+  document.querySelector(".nav").addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.id === "nav-packages") {
+      allPackages(packages);
+      packageForm()
+    }
+  });
+}
 //On Start Function
 const startApp = () => {
-  navOnDom();
-  allPackages(packages);
-  packageForm();
-  footerOnDom();
-  //eventListeners(); // always last
+  
+  
+  eventListeners(); // always last
 };
 
 startApp();
