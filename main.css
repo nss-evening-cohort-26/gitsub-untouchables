@@ -18,10 +18,29 @@
   flex-direction: column;
 }
 
-.nav, #projects, #form {
+.nav, #packages, #projects, #form, #packages-form {
+  display: flex;
+  flex-wrap: wrap;
   background-color: blueviolet;
   width: 100%;
   margin: 0.7em auto;
+}
+
+.card-package {
+  /* max-height: 100%; */
+  display: flex;
+  color: white;
+  background-color: rgb(51, 50, 50);
+  border: 1px solid grey;
+  /* display: none; */
+}
+
+#inputFormPackage {
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: rgb(51, 50, 50);
+  padding: 15px;
 }
 
 .footer {
@@ -29,7 +48,6 @@
   width: 80%;
   height: 50px;
   margin: 0.7em auto;
-
   ul {
     display: flex;
     flex-direction: row;
@@ -42,15 +60,13 @@
   }
 }
 
-#projects {
-  height: 300px;
-}
-
-#form {
+#projects, #packages, #form {
   height: 300px;
 }
 
 .nav {
+  height: 50px;
+  margin-top: 0;
   display: flex;
   justify-content: space-around;
   list-style-type: none;
