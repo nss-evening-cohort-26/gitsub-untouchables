@@ -396,10 +396,10 @@ const packageForm = () => {
 const reposOnDom = (profiles, profileIndex) => {
 
   const profile = profiles[profileIndex];
-  let repoDomString = "";
+  let domString = "";
 
   profile.repos.forEach((repo) => {
-    repoDomString +=
+    domString +=
     `<div id= "repo-cards" class="card w-100">
       <div class="card-body">
         <h5 class="card-title">${repo.repoName}</h5>
@@ -413,7 +413,7 @@ const reposOnDom = (profiles, profileIndex) => {
       </div>
     </div>`
   });
-  renderToDom("#repos", repoDomString);
+  renderToDom("#repos", domString);
 };
 
 
@@ -456,18 +456,41 @@ const reposForm = document.querySelector("#repos-form");
 // EVENT LISTENERS
 // ***************
 
-const eventListeners = () => {
-  document.querySelectorAll(".nav").addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target.id === "nav-packages") {
-      allPackages(packages);
-      packageForm();
-    } else if (e.target.id === "nav-repo") {
-      reposOnDom(profiles, 3);
-      reposFormOnDom();
-    }
-  });
+// const eventListeners = () => {
+//   document.querySelectorAll(".navigation").addEventListener('click', (e) => {
+//     e.preventDefault();
+//     if (e.target.id === "nav-packages") {
+//       allPackages(packages);
+//       packageForm();
+//     } else if (e.target.id === "nav-repo") {
+//       reposOnDom(profiles, 3);
+//       reposFormOnDom();
+//     }
+//   });
+// }
+
+// ******************
+// URL PATH FUNCTIONS
+// ******************
+
+const urlPath = () => {
+  if (location.pathname === "/index.html") {
+    console.log(index.html);
+
+  } else if (location.pathname === "/repo.html") {
+    reposOnDom(profiles, 3);
+    reposFormOnDom();
+
+  } else if (location.pathname === "/projects.html") {
+
+  } else if (location.pathname === "/packages.html") {
+    allPackages(packages);
+    packageForm();
+  }
 }
+
+
+
 
 // ******************
 // ON START FUNCTIONS
@@ -475,7 +498,7 @@ const eventListeners = () => {
 const startApp = () => {
   
   profileOnDom(profiles)
-  eventListeners(); // always last
+  urlPath();
 
 };
 
