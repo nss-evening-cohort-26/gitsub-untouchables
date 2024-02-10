@@ -3,12 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Untouchables GitSub</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="main.css">
+  <title>Test GitSub</title>
 </head>
 <body>
-  <header></header>
+  <header>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Bootstrap
+        </a>
+      
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User Profiles
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Marceline</a></li>
+            <li><a class="dropdown-item" href="#">Bubblegum</a></li>
+            <li><a class="dropdown-item" href="#">Finn</a></li>
+            <li><a class="dropdown-item" href="#">Jake</a></li>
+          </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
 
   <div class="container">
 
@@ -22,7 +46,7 @@
             <a class="nav-link " aria-current="page" href="index.html">Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#repo.html">Repositories</a>
+            <a class="nav-link" id="nav-repo" href="repo.html">Repositories</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Projects</a></a>
@@ -32,10 +56,11 @@
           </li>
         </ul>
       </div>
-      <div id="projects"></div>
-      <div id="form"></div>
+      <div id="repos"></div>
+      <div id="repos-form"></div>
     </div>
   </div>
+
   <div class="footer">
     <ul>
       <li><a href="#">© 2024 GitHub, Inc.</a></li>
@@ -53,7 +78,6 @@
       <li><a href="#">About</a></li>
     </ul>
   </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="main.js"></script>

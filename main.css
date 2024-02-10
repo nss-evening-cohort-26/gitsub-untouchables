@@ -78,6 +78,13 @@
   }
 }
 
+
+#user-image {
+  width: 100%;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 100%;
+}
+
 @media screen and (max-width:720px) {
   .container {
     display: flex;
@@ -89,3 +96,12 @@
     margin-bottom: 0.7em;
   }
 }
+
+#repo-cards {
+  border-radius: 0;
+}
+
+ #repo-tag {
+  display: inline;
+  padding: 5px 15px;
+ }
