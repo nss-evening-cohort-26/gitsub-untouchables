@@ -8,8 +8,8 @@
 
 
 #sidebar {
-  background-color: red;
   grid-row: span 4;
+  border-radius: 5px;
 }
 
 .main {
@@ -21,7 +21,8 @@
 .nav, #packages, #projects, #form, #packages-form {
   display: flex;
   flex-wrap: wrap;
-  background-color: blueviolet;
+  /* border: 1px solid rgb(188, 188, 188); */
+  border-radius: 5px;
   width: 100%;
   margin: 0.7em auto;
 }
@@ -29,22 +30,22 @@
 .card-package {
   /* max-height: 100%; */
   display: flex;
-  color: white;
-  background-color: rgb(51, 50, 50);
-  border: 1px solid grey;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(196, 196, 196);
+  margin: 10px;
   /* display: none; */
 }
 
 #inputFormPackage {
   width: 100%;
-  height: 100%;
-  color: white;
-  background-color: rgb(51, 50, 50);
+  /* height: 100%; */
+  color: rgb(0, 0, 0);
+  background-color: rgb(254, 254, 254);
   padding: 15px;
 }
 
 .footer {
-  background-color: green;
   width: 80%;
   height: 50px;
   margin: 0.7em auto;
@@ -60,22 +61,24 @@
   }
 }
 
-#projects, #packages, #form {
+/* #projects, #packages, #form {
   height: 300px;
-}
+} */
 
 .nav {
-  height: 50px;
   margin-top: 0;
   display: flex;
   justify-content: space-around;
   list-style-type: none;
-  height: 50px;
   margin-top: 0;
 
   a {
     color: black;
   }
+}
+
+.navigation {
+  border-bottom: 1px solid rgb(196, 196, 196);
 }
 
 
@@ -85,23 +88,36 @@
   border-radius: 100%;
 }
 
-@media screen and (max-width:720px) {
+
+#repo-cards {
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+}
+
+ #repo-tag {
+  display: inline;
+  padding: 5px 15px;
+  color: rgb(36, 86, 158);
+  background-color: rgb(116, 201, 232);border-radius: 100px;
+ }
+
+.btn-success {
+  margin-top: 15px;
+}
+
+form {
+  margin: 10px;
+}
+
+
+ @media screen and (max-width:720px) {
   .container {
     display: flex;
     flex-flow: column;
   }
 
   #sidebar {
-    height: 300px;
     margin-bottom: 0.7em;
   }
 }
-
-#repo-cards {
-  border-radius: 0;
-}
-
- #repo-tag {
-  display: inline;
-  padding: 5px 15px;
- }

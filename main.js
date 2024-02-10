@@ -430,14 +430,14 @@ const reposFormOnDom = () => {
     <div class="mb-3">
     <label for="repoDescription" class="form-label">Description</label>
     <textarea class="form-control" id="repoDescription" rows="3"></textarea>
-    <button type="submit" class="btn btn-success" id="form-submit">Create Package</button>
+    <button type="submit" class="btn btn-success" id="repo-submit">Create Package</button>
   </form>`;
   renderToDom("#repos-form", domString);
 
 
 const reposForm = document.querySelector("#repos-form");
 
-  form.addEventListener("submit", (e) => {
+  reposForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const newRepoObj = {
