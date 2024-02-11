@@ -330,8 +330,10 @@ const profileOnDom = (array) => {
       <p>${item.email}</p>
       <p>${item.website}</p>
       <p>${item.twitter}</p>
-      <h6>Highlights</h6>
-      <p>${item.highlights}</p>
+      <h5>Highlights</h5>
+      <li>${item.highlights[0]}</li>
+      <li>${item.highlights[1]}</li>
+      <li>${item.highlights[2]}</li>
     </div>
     </div>
     `;
@@ -374,7 +376,7 @@ const packageForm = () => {
   </form>`;
   renderToDom("#packages-form", domString);
 
-  const form = document.querySelector("#packages-form");
+  const form = document.querySelector("#inputFormPackage");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -435,19 +437,20 @@ const reposFormOnDom = () => {
   renderToDom("#repos-form", domString);
 
 
-const reposForm = document.querySelector("#repos-form");
+const reposForm = document.querySelector("#inputFormRepo");
 
   reposForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const newRepoObj = {
-      id: repos.length + 1,
+      id: profiles[3].repos.length + 1,
       name: document.querySelector("#repoName").value,
       description: document.querySelector("#repoDescription").value,
+      tags:[],
     };
-    repos.push(newRepoObj);
+    profiles[3].repos.push(newRepoObj);
     reposOnDom(profiles, 3);
-    form.reset();
+    reposForm.reset();
   });
 };
 
@@ -458,7 +461,7 @@ const reposForm = document.querySelector("#repos-form");
 const overviewReposOnDom = (profiles, profileIndex) => {
 
   const profile = profiles[profileIndex];
-  let domString = "<h6>Pinned</h6>";
+  let domString = `<h5 class="pinned">Pinned</h5>`;
 
   profile.repos.forEach((repo) => {
     domString +=
