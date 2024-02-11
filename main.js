@@ -308,7 +308,7 @@ const profileOnDom = (array) => {
     <div class="card-body">
       <img src=${item.img} id="user-image">
       <h5 class="card-title" id="profile-name">${item.name}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary" id="username">${item.username}</h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary" id="username">@${item.username}</h6>
       <p class="card-text" id="bio">${item.bio}</p>
       <div id="profile-btns">
         <button>Follow</button>
@@ -479,7 +479,66 @@ const overviewReposOnDom = (profiles, profileIndex) => {
   renderToDom("#overview-repos", domString);
 };
 
+const allProjects = (profiles, index) => {
+  const profile = profiles[index];
+  let domString = `
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">${profile.projects.length} Open</th>
+      <th scope="col">1 Closed</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  </table>
+  `
+  profile.projects.forEach((proj) => {
+    // console.log(proj)
+    domString += `<table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">${proj.projectName}</th>
+          <td>${proj.description}</td>
+          <td><button>...</button></td>    
+        </tr>
+      </tbody>
+    </table>`
 
+    renderToDom("#projects", domString)
+  }); {
+    // console.log(item);
+  }
+}
+
+const projectsForm = () => {
+  const domString = `
+  <form id="inputFormProject">
+    <h3 class="form-header">Create a new project</h3>
+    <div class="form-floating mb-3">
+      <input class="form-control form-control-lg" type="text" placeholder="Example 1" id="projName" aria-label="projName" required>
+      <label for="projName">Project Board Name</label>
+    </div>
+    <div class="mb-3">
+    <label for="projDesc" class="form-label">Description</label>
+    <textarea class="form-control" id="projDesc" rows="3"></textarea>
+    <button type="submit" class="btn btn-success" id="form-submit">Create Package</button>
+  </form>`;
+  renderToDom("#projects-form", domString);
+
+  const projForm = document.querySelector("#inputFormProject");
+  projForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newProjectObj = {
+      id: profiles[3].projects.length + 1,
+      projectName: document.querySelector("#projName").value,
+      description: document.querySelector("#projDesc").value,
+    };
+    profiles[3].projects.push(newProjectObj);
+    allProjects(profiles, 3);
+    projForm.reset();
+  });
+};
 
 // ***************
 // EVENT LISTENERS
@@ -503,7 +562,7 @@ const overviewReposOnDom = (profiles, profileIndex) => {
 // ******************
 
 const urlPath = () => {
-  if (location.pathname === "/index.html") {
+  if (location.pathname === "/" || location.pathname === "/index.html") {
     overviewReposOnDom(profiles, 3);
     reposFormOnDom();
 
@@ -512,6 +571,8 @@ const urlPath = () => {
     reposFormOnDom();
 
   } else if (location.pathname === "/projects.html") {
+    allProjects(profiles, 3);
+    projectsForm();
 
   } else if (location.pathname === "/packages.html") {
     allPackages(packages);
@@ -526,7 +587,8 @@ const urlPath = () => {
 // ON START FUNCTIONS
 // ******************
 const startApp = () => {
-  
+  // overviewReposOnDom(profiles, 3);
+  // reposFormOnDom();
   profileOnDom(profiles)
   urlPath();
 
