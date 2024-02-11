@@ -4,6 +4,7 @@ const profiles = [
     id: 1,
     name: "Marceline",
     username: "vampireQueen",
+    img: "images/marceline.png",
     bio: "A fun-loving and playful 1,000-year-old vampire queen.",
     followers: "3.5k",
     following: 13,
@@ -65,6 +66,7 @@ const profiles = [
     id: 2,
     name: "Princess Bubblegum",
     username: "PB",
+    img: "images/bubblegum.png",
     bio: "18 for 800 years. Want to see my science lab?",
     followers: "50k",
     following: 5,
@@ -130,6 +132,7 @@ const profiles = [
     id: 3,
     name: "Jake",
     username: "magicDog",
+    img: "images/jake.png",
     bio: "A fun-loving and playful 1,000-year-old vampire queen.",
     followers: "6k",
     following: 3,
@@ -195,6 +198,7 @@ const profiles = [
     id: 4,
     name: "Finn",
     username: "finnTheHuman",
+    img: "images/finn.jpeg",
     bio: "Ready to kick some butts",
     followers: "6k",
     following: 13,
@@ -206,13 +210,15 @@ const profiles = [
     highlights: ["Magic Sword", "Bionic Arm", "Hero of Princesses"],
     repos:[
       {
-        repoName: "Puncha yo Buns",
+        id: 1,
+        repoName: "Puncha Yo Buns",
         description: "I'm a buff baby that can dance like a man, I can shake-ah my fanny, I can shake-ah my can!",
         tags: ["embarrassing", "song", "baby"],
       },
  
  
       {
+        id: 2,
         repoName: "All Gummed Up Inside",
         description: "I can't keep pushing this down any deeper, Why do I keep trying if I can't keep her?",
         tags: ["music", "sad", "girl trouble"],
@@ -220,12 +226,14 @@ const profiles = [
  
  
       {
+        id: 3,
         repoName: "Everything's Falling into Place",
         description: "Everything's falling into place, I'm right where I should be. The tides of life all led me here, And that's why I'm not scared",
         tags: ["music", "song", "space"],
       },
 
       {
+        id: 4,
         repoName: "Underwear Song",
         description: "At first I had no underwear, But this time I brought underwear, I'm glad I remembered my underwear,",
         tags: ["music", "song", "underwear"],
@@ -296,9 +304,9 @@ const profileOnDom = (array) => {
 
   array.map((item) => {
     domString = `
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 100;">
     <div class="card-body">
-      <img src="..." id="user-image">
+      <img src=${item.img} id="user-image">
       <h5 class="card-title" id="profile-name">${item.name}</h5>
       <h6 class="card-subtitle mb-2 text-body-secondary" id="username">${item.username}</h6>
       <p class="card-text" id="bio">${item.bio}</p>
@@ -332,7 +340,10 @@ const profileOnDom = (array) => {
   renderToDom("#sidebar", domString);
 };
 
-//Packages to DOM
+// ***************
+// PACKAGES ON DOM
+// ***************
+
 const allPackages = (array) => {
   let domString = "";
   for (const package of array) {
@@ -378,21 +389,144 @@ const packageForm = () => {
   });
 };
 
-const eventListeners = () => {
-  document.querySelector(".nav").addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target.id === "nav-packages") {
-      allPackages(packages);
-      packageForm()
-    }
+// *******************
+// REPOSITORIES ON DOM
+// *******************
+
+const reposOnDom = (profiles, profileIndex) => {
+
+  const profile = profiles[profileIndex];
+  let domString = "";
+
+  profile.repos.forEach((repo) => {
+    domString +=
+    `<div id= "repo-cards" class="card w-100">
+      <div class="card-body">
+        <h5 class="card-title">${repo.repoName}</h5>
+        <p class="card-text">${repo.description}</p>
+      </div>
+
+      <div class="repo-tags">
+        <p id="repo-tag" class="card-text">${repo.tags[0]}</p>
+        <p id="repo-tag" class="card-text">${repo.tags[1]}</p>
+        <p id="repo-tag" class="card-text">${repo.tags[2]}</p>
+      </div>
+    </div>`
   });
+  renderToDom("#repos", domString);
+};
+
+
+// CREATE REPOS FORM
+const reposFormOnDom = () => {
+
+  const domString = `
+  <form id="inputFormRepo">
+    <h3 class="form-header">Create a new repository</h3>
+    <div class="form-floating mb-3">
+      <input class="form-control form-control-lg" type="text" placeholder="Example 1" id="repoName" aria-label="repoName" required>
+      <label for="repoName">Repository Name</label>
+    </div>
+    <div class="mb-3">
+    <label for="repoDescription" class="form-label">Description</label>
+    <textarea class="form-control" id="repoDescription" rows="3"></textarea>
+    <button type="submit" class="btn btn-success" id="repo-submit">Create Repository</button>
+  </form>`;
+  renderToDom("#repos-form", domString);
+
+
+const reposForm = document.querySelector("#repos-form");
+
+  reposForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newRepoObj = {
+      id: repos.length + 1,
+      name: document.querySelector("#repoName").value,
+      description: document.querySelector("#repoDescription").value,
+    };
+    repos.push(newRepoObj);
+    reposOnDom(profiles, 3);
+    form.reset();
+  });
+};
+
+// *********************
+// OVERVIEW-REPOS ON DOM
+// *********************
+
+const overviewReposOnDom = (profiles, profileIndex) => {
+
+  const profile = profiles[profileIndex];
+  let domString = "<h6>Pinned</h6>";
+
+  profile.repos.forEach((repo) => {
+    domString +=
+    `<div id= "repo-cards" class="card" style="width: 45%;">
+      <div class="card-body">
+        <h5 class="card-title">${repo.repoName}</h5>
+        <p class="card-text">${repo.description}</p>
+      </div>
+
+      <div class="repo-tags">
+        <p id="main-language" class="card-text">JavaScript</p>
+      </div>
+    </div>`
+  });
+  renderToDom("#overview-repos", domString);
+};
+
+
+
+// ***************
+// EVENT LISTENERS
+// ***************
+
+// const eventListeners = () => {
+//   document.querySelectorAll(".navigation").addEventListener('click', (e) => {
+//     e.preventDefault();
+//     if (e.target.id === "nav-packages") {
+//       allPackages(packages);
+//       packageForm();
+//     } else if (e.target.id === "nav-repo") {
+//       reposOnDom(profiles, 3);
+//       reposFormOnDom();
+//     }
+//   });
+// }
+
+// ******************
+// URL PATH FUNCTIONS
+// ******************
+
+const urlPath = () => {
+  if (location.pathname === "/index.html") {
+    overviewReposOnDom(profiles, 3);
+    reposFormOnDom();
+
+  } else if (location.pathname === "/repo.html") {
+    reposOnDom(profiles, 3);
+    reposFormOnDom();
+
+  } else if (location.pathname === "/projects.html") {
+
+  } else if (location.pathname === "/packages.html") {
+    allPackages(packages);
+    packageForm();
+  }
 }
 
-//On Start Function
+
+
+
+// ******************
+// ON START FUNCTIONS
+// ******************
 const startApp = () => {
   
   profileOnDom(profiles)
-  eventListeners(); // always last
+  urlPath();
+
 };
 
 startApp();
