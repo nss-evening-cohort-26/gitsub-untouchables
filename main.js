@@ -458,7 +458,7 @@ const reposForm = document.querySelector("#repos-form");
 const overviewReposOnDom = (profiles, profileIndex) => {
 
   const profile = profiles[profileIndex];
-  let domString = "<h5>Pinned</h5>";
+  let domString = "<h6>Pinned</h6>";
 
   profile.repos.forEach((repo) => {
     domString +=
