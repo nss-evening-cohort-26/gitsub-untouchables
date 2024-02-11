@@ -330,8 +330,10 @@ const profileOnDom = (array) => {
       <p>${item.email}</p>
       <p>${item.website}</p>
       <p>${item.twitter}</p>
-      <h6>Highlights</h6>
-      <p>${item.highlights}</p>
+      <h5>Highlights</h5>
+      <li>${item.highlights[0]}</li>
+      <li>${item.highlights[1]}</li>
+      <li>${item.highlights[2]}</li>
     </div>
     </div>
     `;
