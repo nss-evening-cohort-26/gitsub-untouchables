@@ -211,7 +211,7 @@ const profiles = [
     repos:[
       {
         id: 1,
-        repoName: "Puncha yo Buns",
+        repoName: "Puncha Yo Buns",
         description: "I'm a buff baby that can dance like a man, I can shake-ah my fanny, I can shake-ah my can!",
         tags: ["embarrassing", "song", "baby"],
       },
@@ -430,7 +430,7 @@ const reposFormOnDom = () => {
     <div class="mb-3">
     <label for="repoDescription" class="form-label">Description</label>
     <textarea class="form-control" id="repoDescription" rows="3"></textarea>
-    <button type="submit" class="btn btn-success" id="repo-submit">Create Package</button>
+    <button type="submit" class="btn btn-success" id="repo-submit">Create Repository</button>
   </form>`;
   renderToDom("#repos-form", domString);
 
@@ -441,7 +441,7 @@ const reposForm = document.querySelector("#repos-form");
     e.preventDefault();
 
     const newRepoObj = {
-      id: repo.length + 1,
+      id: repos.length + 1,
       name: document.querySelector("#repoName").value,
       description: document.querySelector("#repoDescription").value,
     };
@@ -450,6 +450,32 @@ const reposForm = document.querySelector("#repos-form");
     form.reset();
   });
 };
+
+// *********************
+// OVERVIEW-REPOS ON DOM
+// *********************
+
+const overviewReposOnDom = (profiles, profileIndex) => {
+
+  const profile = profiles[profileIndex];
+  let domString = "<h5>Pinned</h5>";
+
+  profile.repos.forEach((repo) => {
+    domString +=
+    `<div id= "repo-cards" class="card" style="width: 45%;">
+      <div class="card-body">
+        <h5 class="card-title">${repo.repoName}</h5>
+        <p class="card-text">${repo.description}</p>
+      </div>
+
+      <div class="repo-tags">
+        <p id="main-language" class="card-text">JavaScript</p>
+      </div>
+    </div>`
+  });
+  renderToDom("#overview-repos", domString);
+};
+
 
 
 // ***************
@@ -475,7 +501,8 @@ const reposForm = document.querySelector("#repos-form");
 
 const urlPath = () => {
   if (location.pathname === "/index.html") {
-    console.log(index.html);
+    overviewReposOnDom(profiles, 3);
+    reposFormOnDom();
 
   } else if (location.pathname === "/repo.html") {
     reposOnDom(profiles, 3);

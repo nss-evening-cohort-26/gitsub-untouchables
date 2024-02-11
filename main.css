@@ -18,13 +18,18 @@
   flex-direction: column;
 }
 
-.nav, #packages, #projects, #form, #packages-form {
+.nav, #packages, #projects, #form, #packages-form, #overview-repos {
   display: flex;
   flex-wrap: wrap;
   /* border: 1px solid rgb(188, 188, 188); */
   border-radius: 5px;
   width: 100%;
   margin: 0.7em auto;
+}
+
+h5 {
+  width: 100%;
+  margin: 10px;
 }
 
 .card-package {
@@ -102,6 +107,11 @@
   background-color: rgb(116, 201, 232);border-radius: 100px;
  }
 
+ #main-language {
+  margin: 10px;
+ }
+
+
 .btn-success {
   margin-top: 15px;
 }
@@ -119,5 +129,9 @@ form {
 
   #sidebar {
     margin-bottom: 0.7em;
+  }
+
+  #repo-cards {
+    width: 100%;
   }
 }
