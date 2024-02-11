@@ -376,7 +376,7 @@ const packageForm = () => {
   </form>`;
   renderToDom("#packages-form", domString);
 
-  const form = document.querySelector("#packages-form");
+  const form = document.querySelector("#inputFormPackage");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -437,19 +437,20 @@ const reposFormOnDom = () => {
   renderToDom("#repos-form", domString);
 
 
-const reposForm = document.querySelector("#repos-form");
+const reposForm = document.querySelector("#inputFormRepo");
 
   reposForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const newRepoObj = {
-      id: repos.length + 1,
+      id: profiles[3].repos.length + 1,
       name: document.querySelector("#repoName").value,
       description: document.querySelector("#repoDescription").value,
+      tags:[],
     };
-    repos.push(newRepoObj);
+    profiles[3].repos.push(newRepoObj);
     reposOnDom(profiles, 3);
-    form.reset();
+    reposForm.reset();
   });
 };
 
